@@ -27,7 +27,7 @@ fn part2(file_path: &str) -> u64 {
     let mut transformed_in_current_phase: Vec<Range> = vec![];
     let mut ranges_to_proccess_in_current_phase: Vec<Range> = vec![];
 
-    utils::process_file(file_path, |line: &str| {
+    utils::process_file(file_path, |line: &str, line_index: usize| {
         if line == "" {
         } else if line.starts_with("seeds:") {
             let mut reading_range_start = true;

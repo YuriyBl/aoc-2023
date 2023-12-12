@@ -23,8 +23,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "day-04"
+name = "day-03"
 version = "0.1.0"
+dependencies = [
+ "regex",
+ "utils",
+]
 
 [[package]]
 name = "day-05"

@@ -10,7 +10,7 @@ fn part1(file_path: &str) -> u64 {
     let mut seed_moved_in_current_phase: Vec<bool> = vec![];
     let mut phase = 0;
 
-    utils::process_file(file_path, |line: &str| {
+    utils::process_file(file_path, |line: &str, line_index: usize| {
         if line == "" {
         } else if line.starts_with("seeds:") {
             for part in line.split(' ') {

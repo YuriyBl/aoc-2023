@@ -3,13 +3,13 @@ use std::io::{self, BufRead};
 
 // Define a trait for the callback function
 pub trait LineCallback {
-    fn handle_line(&mut self, line: &str);
+    fn handle_line(&mut self, line: &str, line_index: usize);
 }
 
 // Implement the trait for a closure
-impl<F: FnMut(&str)> LineCallback for F {
-    fn handle_line(&mut self, line: &str) {
-        (self)(line);
+impl<F: FnMut(&str, usize)> LineCallback for F {
+    fn handle_line(&mut self, line: &str, line_index: usize) {
+        (self)(line, line_index);
     }
 }
 
@@ -18,9 +18,9 @@ pub fn process_file<T: LineCallback>(file_path: &str, mut callback: T) {
     let file = File::open(file_path).unwrap();
     let reader = io::BufReader::new(file);
 
-    for line in reader.lines() {
+    for (line_index, line) in reader.lines().enumerate() {
         let line = line.unwrap();
-        callback.handle_line(&line);
+        callback.handle_line(&line, line_index);
     }
 }
 

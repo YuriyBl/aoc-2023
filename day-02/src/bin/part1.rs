@@ -39,7 +39,7 @@ fn part1(file_path: &str) -> i32 {
 
                 println!("game_number: {}", game_number);
 
-                for (pos, string_part) in game_string.split(';').enumerate() {
+                for string_part in game_string.split(';') {
                     println!("item: {}", string_part);
 
                     cubes_re.captures_iter(string_part).for_each(|caps| {
